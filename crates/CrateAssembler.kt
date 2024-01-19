@@ -164,7 +164,7 @@ class CrateAssembler : Callable<Unit> {
     private fun externalDepVersion(dep: String, bazelDepWorkspace: Map<String, String>, workspaceRefs: JsonObject): String {
         val workspace = bazelDepWorkspace.get(dep)
         val commitDep = workspaceRefs.get("commits").asObject().get(workspace)
-        if (commitDep != null) return commitDep.asString();
+        if (commitDep != null) return "0.0.0-" + commitDep.asString();
         val tagDep = workspaceRefs.get("tags").asObject().get(workspace)
         if (tagDep != null) return tagDep.asString();
         throw IllegalStateException();
